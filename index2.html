@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .content .item {
+            background-color: lightblue;
+            
+        }
+        .button {
+            background-color: rgb(60, 255, 0);
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 12px;
+        }
+        .button.active {
+            background-color: red;
+        }
+        .button.warning {
+            background-color: rgb(255, 72, 0);
+        }
+        .item1 + .item2 {
+            background-color: yellow;
+        }
+        input[type="text"] {
+            border: 2px solid #4d5352;
+            margin-bottom: 5px;
+        }
+        .button{
+            background-color: rgb(0, 123, 255);
+            color: white;
+            padding: 10px 20px;
+        }
+        .button:hover {
+            background-color: rgb(0, 90, 190);
+        }
+        .button:active {
+            background-color: rgb(220, 53, 69);
+        }
+        .button:focus {
+            background-color: 3px solid rgb(255, 193, 7);
+        }
+        .input:focus {
+            border: 2px solid rgb(8, 255, 66);
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        Container Content
+        <div class="item">
+            item Content
+        </div>
+    </div>
+    <div class="Footer-container">
+         Container Content
+        <div class="item">
+            item Content
+        </div>
+    </div>
+    <button class="button">Click Me</button>
+    <button class="button active">Delete</button>
+    <button class="button warning">Warning</button>
+    <div class="item1">item1</div>
+    <div class="item2">item2</div>
+    <input type="text" name="sample-input">
+    <input type="text" name="another-input">
+    <input type="number" name="number-input">
+    <button class="button">Click Me</button>
+    <input type="text">
+</body>
+</html>
