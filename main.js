@@ -118,7 +118,7 @@ loop statements:
 while 
 for
 */
-
+/*
 let coounter = -5;
 while (coounter < 10) {
     console.log('Hello world');
@@ -129,3 +129,156 @@ for (let i=-10; i<10; i++){
 }for (let i=0; i<10; i++){
     console.log('555555',i);
 }
+*/
+/*
+let agr1 = 25;
+let agr2 = 30;
+let agr3 = 35;
+console.log(agr1,agr2,agr3);
+
+let ages = [25,30,35];
+console.log(agrs);
+console.log(agrs[1]);
+
+//เปลี่ยนค่าใน Array
+ages = [40,45,50];
+console.log(ages);
+
+//เพิ่มค่าใน Array
+ages.push(55);
+console.log(ages);
+
+//ความยาวของ Array
+console.log(ages.length);
+
+//การลบค่าใน Array
+ages.pop();
+console.log(ages);
+
+if (ages.includes(45)) {
+    console.log("เจอ 45 ในอาเรย์");
+}
+
+let Number = [18,15,70,25,60];
+Number.sort()
+console.log(Number);
+
+let names = ['John','Jane','Doe'];
+names.push('Smith');
+console.log(names);
+console.log(names.length);
+
+for (let i=0; i<names.length; i++){
+    console.log(names[i]);
+}
+    */
+/*
+let Student = [{
+    age : 30,
+    name : "Tham",
+    grade: 'A'
+},{
+    age : 25,
+    name : "John",
+    grade: 'B'
+}];
+
+Student.pop();
+for (let i=0; i<Student.length; i++){
+    console.log("Student"+ (i + 1) + ":");
+    console.log("Name" + Student[i].name);
+    console.log("Age" + Student[i].age);
+    console.log("Grade" + Student[i].grade);
+}
+
+Student.push({
+    age : 28,
+    name : "Jane",  
+    grade: 'A'
+});
+*/
+/*
+function calculate_grade(score) {
+    if (score >= 80) {
+        grade = 'A';
+    } else if (score >= 70) {
+        grade = 'B';
+    } else if (score >= 60) {
+        grade = 'C';
+    } else if (score >= 50) {
+        grade = 'D';
+    } else {
+        grade = 'F';
+    }
+    return grade;  
+}
+
+let Student_scores = 75;
+let Student_grade = calculate_grade(Student_scores);
+console.log("Student grade is:", Student_grade);
+*/
+/*
+let score = [85, 72, 90, 65, 48];
+for (let i = 0; i < score.length; i++) {
+   console.log(`Score at index ${i}  is ${score[i]}`);   
+}
+score = score.map((s) => {
+    return s *2 
+});
+score.forEach((s) => {
+    console.log('Updated score:', s);
+})
+*/
+/*
+let score = [85, 72, 90, 65, 48];
+
+let newscore = []
+
+for (let index = 0; index < score.length; index++) {
+    console.log (`Score` , score[index])
+}
+
+let newscore = score.filter((s) => {
+    return s >= 60
+})     
+newscore.forEach((ns) => {
+    console.log(`naw score:`, ns)
+})
+*/
+/*
+let Students = [
+    {
+        name:`aa`,
+        score:`60`,
+        grade:'D'
+    },
+    {
+        name:`bb`,
+        score:`85`,
+        grade:'A'
+
+    }
+];
+console.log(`Student :`, Students[0])
+
+let Student = Students.map((s) => {
+    if (s.name === 'aa'){
+        return true
+    }
+})
+
+let doublescore_student = Students.map((s) => {
+    s.score = s.score * 2
+    return s
+})
+console.log(`Updated Student:`, Student)
+
+console.log(doublescore_student)
+
+let highScore_student = Students.filter((s) => {
+    if (s.score >= 80){
+        return true
+    }
+})
+console.log('High score student:', highScore_student);
+*/
