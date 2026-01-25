@@ -1,0 +1,112 @@
+/* นำเข้า Font เพื่อความสวยงาม */
+@import url('https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600&display=swap');
+
+* {
+    box-sizing: border-box;
+    font-family: 'Sarabun', sans-serif;
+}
+
+body {
+    background-color: #f0f2f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+/* กล่องคอนเทนเนอร์หลัก */
+.container {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 500px;
+}
+
+/* หัวข้อ Register form */
+.header {
+    font-size: 24px;
+    font-weight: 600;
+    color: #333;
+    text-align: center;
+    margin-bottom: 25px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #eee;
+}
+
+/* การจัดวาง Row (Flex) */
+.flex {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.form-input {
+    margin-bottom: 15px;
+}
+
+.header-form {
+    min-width: 80px;
+    font-weight: 600;
+    color: #555;
+}
+
+/* ปรับแต่ง Input และ Textarea */
+input.form, textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+input.form:focus, textarea:focus {
+    border-color: #007bff;
+}
+
+textarea {
+    height: 80px;
+    resize: vertical;
+    margin-top: 5px;
+}
+
+/* ปรับแต่ง Radio และ Checkbox */
+.gender .flex {
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.form-input div {
+    margin-top: 5px;
+    color: #444;
+}
+
+/* ปุ่มส่งข้อมูล */
+.center {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.button {
+    background-color: #007bff;
+    color: white;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.1s;
+    width: 100%;
+}
+
+.button:hover {
+    background-color: #0056b3;
+}
+
+.button:active {
+    transform: scale(0.98);
+}
