@@ -6,20 +6,46 @@
     <title>Document</title>
 </head>
 <body>
-    เพศ :
-    <input type="radio" name="gender" value="male" onchange="onchangeGender"> ชาย
-    <input type="radio" name="gender" value="female" onchange="onchangeGender"> หญิง
-   <button onclick="showMessage()">Click Me</button>
-    <div onclick="devCleck()">dev clicked</div>
+    <div id ="content">
+<ul>
+    <li>กีฟา</li>
+    <li>ดนตรี</li>
+    <li>อ่านหนังสือ</li>
+</ul>
+
+
+<input type="checkbox" name="interest" value="กีฟา">กีฟา
+<input type="checkbox" name="interest" value="ดนตรี">ดนตรี
+<input type="checkbox" name="interest" value="อ่านหนังสือ">อ่านหนังสือ
+<br><br>
+<button onclick="submitInerest()">ส่งข้อมูล</button>
+
     <script>
-        function onchangeGender(){
-            let genderInputs = document.getElementsByName('input[name="gender"]');
-        for (let i=0; i<genderInputs.length; i++){
-                if(genderInputs[i].checked){
-                    console.log(genderInputs[i].value);
+        function submitInerest(){
+            let checkboxes = document.querySelectorAll('input[name="interest"]:checked');
+            let contentHTML = '<ul>';
+                for(let i=0; i<checkboxes.length; i++){
+                    if(checkboxes[i].checked){
+                        console.log(checkboxes[i].value);
+                    contentHTML += '<li>' + checkboxes[i].value + '</li>';
+                    }
                 }
-            }
+            contentHTML += '</ul>';
+            let contentDiv = document.getElementById('content');
+            contentDiv.innerHTML = contentHTML;
         }
+        //function onkeyfname(){
+           // let fname =document.querySelector('input[name="fname"]')
+          //  console.log ('fname',fname,value);
+       // }
+       //* function onchangeGender(){
+            //let genderInputs = document.getElementsByName('input[name="gender"]');
+        //for (let i=0; i<genderInputs.length; i++){
+          //      if(genderInputs[i].checked){
+                   // console.log(genderInputs[i].value);
+            //    }
+            //}
+       // }
             //console.log("Hello, World!");
         
         //let checkbox = document.getElementsByName('input[name="hobby"]');
