@@ -1,0 +1,16 @@
+docker ps --all
+//เรียกออกมาดู
+docker run
+พิมแล้วเก็บในคอนเทน
+ docker run busybox ls
+docker run hello-world
+docker stop <id>
+//หยุดคอนเทน
+docker pull <image_name>
+docker create <image_name>
+docker start <id>
+docker system prune
+docker run -p 80:80 nginx
+//เข้าถึงเว็ป
+docker run -p 9000:80 nginx
+docker run -d -p 9001:80 nginx
