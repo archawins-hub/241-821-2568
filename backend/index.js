@@ -2,11 +2,15 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mysql = require('mysql2/promise');
 const app = express();
-const port = 8000;
+const port = 8001;
+
 app.use(bodyParser.json());
 
+let users = []
+let counter = 1;
 let conn = null
-const initDBConnection = async () => {
+
+const initMySQL = async () => {
     conn = await mysql.createConnection({
         host: 'localhost',
         user: 'root',
@@ -24,17 +28,24 @@ app.get('/users', async (req, res) => {
 
 //path = POST /users สำหรับเพิ่ม user ใหม่
 app.post('/users', async (req, res) => {
+    try {
         let user = req.body;
         const results = await conn.query('INSERT INTO users SET ?', user)
-        console.log('results:', results);
         res.json({
             message: 'User created successfully',
             data: results[0]
+        })
+    } catch (error) {
+        console.error('Error creating user:', error);
+        res.status(500).json({
+            message: 'Error creating user',
+            error: error.message
         });
+    }
 });
 
 // path GET /users/:id สำหรับด get ข้อมูล user ที่มี id ตรงกับที่ส่งมา
-app.patch('/users/:id', async (req, res) => {
+app.get('/users/:id', async (req, res) => {
     try {
         let id = req.params.id
         const results = await conn.query('SELECT * FROM users WHERE id = ?', id)
@@ -102,6 +113,6 @@ app.delete('/users/:id', async (req, res) => {
 })
 
 app.listen(port, async () => {
-    await initDBConnection();
+    await initMySQL();
     console.log(`Server is running on port ${port}`);
 });
