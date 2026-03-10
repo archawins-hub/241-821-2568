@@ -1,47 +1,113 @@
+const validateData = (userData) => {
+    let errors = [];
+
+    if (!userData.firstname) {
+        errors.push('กรุณากรอกชื่อ');
+    }
+
+    if (!userData.lastname) {
+        errors.push('กรุณากรอกนามสกุล');
+    }
+
+    if (!userData.age) {
+        errors.push('กรุณากรอกอายุ');
+    }
+
+    if (!userData.gender) {
+        errors.push('กรุณาเลือกเพศ');
+    }
+
+    if (!userData.interests) {
+        errors.push('กรุณาเลือกความสนใจอย่างน้อย 1 อย่าง');
+    }
+
+    if (!userData.description) {
+        errors.push('กรุณากรอกคำอธิบายเกี่ยวกับตัวคุณ');
+    }
+
+    return errors;
+}
+
+
+
 const submitData = async () => {
-    let firstNameDom = document.querySelector("input[name='firstname']");
-    let lastNameDom = document.querySelector("input[name='lastname']");
-    let ageDom = document.querySelector("input[name='age']");
-    let genderDom = document.querySelector("input[name='gender']:checked");
-    let interestDom = document.querySelectorAll("input[name='interests']:checked");
-    let descriptionDom = document.querySelector("textarea[name='description']");
-    let messageDom = document.getElementById('message');
+
+    let firstNameDOM = document.querySelector('input[name=firstname]');
+    let lastNameDOM = document.querySelector('input[name=lastname]');
+    let ageDOM = document.querySelector('input[name=age]');
+    let genderDOM = document.querySelector('input[name=gender]:checked') || {};
+    let interestDOMs = document.querySelectorAll('input[name=interests]:checked');
+    let descriptionDOM = document.querySelector('textarea[name=description]');
+    let messageDOM = document.getElementById('message');
 
     try {
 
         let interest = '';
-        for (let i = 0; i < interestDom.length; i++) {
-            interest += interestDom[i].value;
-            if (i !== interestDom.length - 1) {
-                interest += ', ';
+
+        for (let i = 0; i < interestDOMs.length; i++) {
+            interest += interestDOMs[i].value;
+
+            if (i != interestDOMs.length - 1) {
+                interest += ',';
             }
         }
 
+
         let userData = {
-            firstName: firstNameDom.value,
-            lastName: lastNameDom.value,
-            age: ageDom.value,
-            gender: genderDom ? genderDom.value : '',
+            firstname: firstNameDOM.value,
+            lastname: lastNameDOM.value,
+            age: ageDOM.value,
+            gender: genderDOM.value || '',
             interests: interest,
-            description: descriptionDom.value
+            description: descriptionDOM.value
         };
 
-        console.log('submitData:', userData);
+
+        const errors = validateData(userData);
+
+        if (errors.length > 0) {
+            throw {
+                message: 'กรอกข้อมูลไม่ครบถ้วน',
+                errors: errors
+            };
+        }
+
 
         const response = await axios.post(
             'http://localhost:8001/users',
             userData
         );
 
-        console.log('response:', response.data);
+        console.log('response', response.data);
 
-        messageDom.textContent = 'ส่งข้อมูลสำเร็จ';
-        messageDom.className = 'message success';
+        messageDOM.innerText = 'บันทึกข้อมูลสำเร็จ';
+        messageDOM.className = 'message success';
+
 
     } catch (error) {
-        console.error('Error:', error);
 
-        messageDom.textContent = 'เกิดข้อผิดพลาดในการส่งข้อมูล';
-        messageDom.className = 'message danger';
+        console.log('error message:', error.message);
+        console.log('error detail:', error.errors);
+
+        if (error.response) {
+            error.message = error.response.data.message;
+            error.errors = error.response.data.errors;
+        }
+
+        let htmlData = '<div>';
+        htmlData += `<div>${error.message}</div>`;
+        htmlData += '<ul>';
+
+        if (error.errors && error.errors.length > 0) {
+            for (let i = 0; i < error.errors.length; i++) {
+                htmlData += `<li>${error.errors[i]}</li>`;
+            }
+        }
+//         error.errors.forEach((err) => {
+        htmlData += '</ul>';
+        htmlData += '</div>';
+
+        messageDOM.innerHTML = htmlData;
+        messageDOM.className = 'message danger';
     }
 };
